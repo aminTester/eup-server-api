@@ -2,13 +2,16 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Copy the EUP API project file and restore dependencies
-COPY ["EUP.csproj", "EUP/"]
-RUN dotnet restore "EUP/EUP.csproj"
+# Copy the EUP API project file into the container
+COPY EUP.csproj ./
 
-# Copy the entire project and publish it
+# Restore the dependencies
+RUN dotnet restore "EUP.csproj"
+
+# Copy the rest of the application code into the container
 COPY . .
-WORKDIR "/EUP"
+
+# Publish the application
 RUN dotnet publish "EUP.csproj" -c Release -o /app/publish
 
 # Use the official .NET runtime image to run the application
