@@ -3,8 +3,8 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 # Copy the EUP API project file and restore dependencies
-COPY ["/EUP.csproj", "EUP/"]
-RUN dotnet restore "/EUP.csproj"
+COPY ["EUP/EUP.csproj", "EUP/"]
+RUN dotnet restore "EUP/EUP.csproj"
 
 # Copy the entire project and publish it
 COPY . .
