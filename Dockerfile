@@ -8,7 +8,7 @@ RUN dotnet restore "EUP/EUP.csproj"
 
 # Copy the entire project and publish it
 COPY . .
-WORKDIR "/src/EUP"
+WORKDIR "/EUP"
 RUN dotnet publish "EUP.csproj" -c Release -o /app/publish
 
 # Use the official .NET runtime image to run the application
